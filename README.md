@@ -35,10 +35,41 @@ You can install `poetry` as shown here using [pipx](https://pipxproject.github.i
 ```sh
 pipx install poetry
 ```
+### Contributing
+Opinions welcome, but might not always be accepted. If you have a better way of doing something, or a reasonable suggestion backed by a decent rationale, feel free to submit a pull request. Otherwise, feel free to maintain a fork.
 
 ### Example Usage
 ```sh
 cookiecutter https://github.com/abn/cookiecutter-python-project.git
+```
+
+This command will produce a structure as shown here. See further below for console output.
+```console
+$ tree -a python-acme-foo-bar/
+python-acme-foo-bar/
+├── CONTRIBUTING.md
+├── .flake8
+├── .github
+│   └── workflows
+│       ├── code-quality.yml
+│       ├── release.yml
+│       └── test-suite.yml
+├── .gitignore
+├── LICENSE
+├── poetry.lock
+├── .pre-commit-config.yaml
+├── pyproject.toml
+├── README.md
+├── src
+│   └── acme
+│       └── foo
+│           └── bar
+│               └── __init__.py
+└── tests
+    ├── conftest.py
+    └── __init__.py
+
+7 directories, 14 files
 ```
 
 This should produce an output similar to this.
