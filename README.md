@@ -19,7 +19,7 @@ Python project with the following enabled:
 or [importlib_metadata](https://importlib-metadata.readthedocs.io/en/latest/).
  
 #### Additional Files Generated
-You can refer to the template's [hooks][hooks] for details of urls used.
+You can refer to the template's [post-hook](hooks/post_gen_project.py) for details of urls used.
 
 - `.gitignore`: A default git ignore file is created using [GitHub ignore templates](https://github.com/github/gitignore/)
 - `LICENSE`: If project chooses an [SPDX](https://spdx.org/licenses/) license, a 
