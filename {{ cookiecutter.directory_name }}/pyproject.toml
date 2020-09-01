@@ -1,0 +1,128 @@
+[tool.poetry]
+name = "{{ cookiecutter.project }}"
+version = "0.1.0a0"
+description = "{{ cookiecutter.description }}"
+authors = [
+    "{{ cookiecutter.author_name }} <{{ cookiecutter.author_email }}>"
+]
+license = "{{ cookiecutter.license }}"
+readme = "README.md"
+packages = [
+    { include = "{{ cookiecutter.namespace.split('.', 1)[0] }}", from = "src" }
+]
+
+[tool.poetry.dependencies]
+python = "^{{ cookiecutter.minimum_python_version }}"
+
+[tool.poetry.dev-dependencies]
+
+[tool.black]
+line-length = 88
+target-python = "{{ cookiecutter.minimum_python_version }}"
+
+[tool.isort]
+profile = "black"
+src_paths = ["src", "test"]
+known_first_party = "{{ cookiecutter.namespace.split('.', 1)[0] }}"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra"
+testpaths = [
+    "tests",
+]
+
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+minversion = 3.13.0
+isolated_build = True
+envlist = clean,py
+
+[testenv]
+whitelist_externals = poetry
+setenv =
+    COVERAGE_FILE=.coverage/data.{envname}
+commands =
+    poetry install --no-root
+    pytest --cov --cov-report=term {posargs}
+
+[testenv:lint]
+skip_install = True
+deps =
+    pre-commit
+commands =
+    pre-commit run --all-files {posargs}
+
+[testenv:report]
+skip_install = true
+deps =
+    coverage[toml]
+setenv =
+    COVERAGE_FILE=.coverage/data
+commands =
+    coverage combine
+    coverage report
+    coverage html
+
+[testenv:clean]
+skip_install = true
+deps =
+    coverage[toml]
+setenv =
+    COVERAGE_FILE=.coverage/data
+commands = coverage erase
+"""
+
+[tool.coverage.run]
+branch = true
+parallel = true
+data_file = ".coverage/data"
+# we only care about these packages
+source = [
+    "{{ cookiecutter.namespace }}",
+]
+omit = [
+    "tests/*",
+]
+
+[tool.coverage.paths]
+# ensure these paths are treated as equivalents
+source = [
+    "src/",
+    "*/site-packages"
+]
+
+[tool.coverage.report]
+skip_empty = true
+ignore_errors = true
+exclude_lines = [
+    # Have to re-enable the standard pragma
+    "pragma: no cover",
+
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self.debug",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:"
+]
+
+[tool.coverage.html]
+directory = ".coverage/html"
+
+[tool.coverage.xml]
+output = ".coverage/coverage.xml"
+
+[tool.coverage.json]
+output = ".coverage/coverage.json"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
