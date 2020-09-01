@@ -18,7 +18,7 @@ Python project with the following enabled:
 - Module level `__version__` variable using [importlib.metadata](https://docs.python.org/3/library/importlib.metadata.html) 
 or [importlib_metadata](https://importlib-metadata.readthedocs.io/en/latest/).
  
-#### Additional Files Generated
+### Additional Files Generated
 You can refer to the template's [post-hook](hooks/post_gen_project.py) for details of urls used.
 
 - `.gitignore`: A default git ignore file is created using [GitHub ignore templates](https://github.com/github/gitignore/)
@@ -26,7 +26,7 @@ You can refer to the template's [post-hook](hooks/post_gen_project.py) for detai
  LICENCE file is generated using the [GitHub Licence API](https://docs.github.com/en/rest/reference/licenses).
 - Default `README.md` (with shiny badges) and `CONTRIBUTING.md` files.
 
-#### Requirements
+### Requirements
 This cookiecutter's hooks makes use of the following when generating the project.
 - [Poetry](https://python-poetry.org/docs)
 - [Python Requests](https://requests.readthedocs.io/en/master/) (A dependency of cookiecutter)
@@ -35,10 +35,10 @@ You can install `poetry` as shown here using [pipx](https://pipxproject.github.i
 ```sh
 pipx install poetry
 ```
-### Contributing
+## Contributing
 Opinions welcome, but might not always be accepted. If you have a better way of doing something, or a reasonable suggestion backed by a decent rationale, feel free to submit a pull request. Otherwise, feel free to maintain a fork.
 
-### Example Usage
+## Example Usage
 ```sh
 cookiecutter https://github.com/abn/cookiecutter-python-project.git
 ```
