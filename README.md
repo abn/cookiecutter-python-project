@@ -72,7 +72,7 @@ python-acme-foo-bar/
 7 directories, 14 files
 ```
 
-This should produce an output similar to this.
+<details><summary><b>Console Output Logs</b></summary><p>
 
 ```console
 project [project-name]: acme-foo-bar
@@ -146,3 +146,6 @@ Resolving dependencies... (0.2s)
 
 Writing lock file
 ```
+</p></details>
+
+[![asciicast](https://asciinema.org/a/k5VOz7eObZEbyI2lKNOGsvMa3.svg)](https://asciinema.org/a/k5VOz7eObZEbyI2lKNOGsvMa3?t=8&speed=3)
