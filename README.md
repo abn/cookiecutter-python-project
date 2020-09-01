@@ -7,7 +7,7 @@ Python project with the following enabled:
 - `tox` for task management (test, lint, coverage)
 - `coverage` configuration with support for multiple python versions
 - CI configuration
-    - GitHub workflows
+    - GitHub workflows: Code Quality, Test Suite and Release (if not proprietary)
 - `pre-commit` configuration, with the following hooks
     - `black` configuration for code style
     - `flake8` for code quality assurance (flake8-annotations plugin enabled)
@@ -24,7 +24,7 @@ You can refer to the template's [post-hook](hooks/post_gen_project.py) for detai
 - `.gitignore`: A default git ignore file is created using [GitHub ignore templates](https://github.com/github/gitignore/)
 - `LICENSE`: If project chooses an [SPDX](https://spdx.org/licenses/) license, a 
  LICENCE file is generated using the [GitHub Licence API](https://docs.github.com/en/rest/reference/licenses).
-- Default `README.md` and `CONTRIBUTING.md` files.
+- Default `README.md` (with shiny badges) and `CONTRIBUTING.md` files.
 
 #### Requirements
 This cookiecutter's hooks makes use of the following when generating the project.
