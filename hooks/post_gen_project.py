@@ -104,6 +104,9 @@ def generate_gitignore():
                     gitignore.write("")
             except requests.exceptions.HTTPError:
                 pass
+        gitignore.write("## source: custom ignores")
+        gitignore.write(".coverage")
+        gitignore.write("")
 
 
 def generate_license_file():
