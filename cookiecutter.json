@@ -6,9 +6,9 @@
   "author_email": "turanga.leela@planetexpress.com",
   "namespace": "{{ cookiecutter.project.replace('-', '.') }}",
   "minimum_python_version": [
+    "3.8",
     "3.6",
     "3.7",
-    "3.8",
     "3.9"
   ],
   "license": [
@@ -21,6 +21,7 @@
     "LGPL-3.0",
     "Proprietary"
   ],
+  "coverage": ["no", "yes"],
   "ci": [
     "none",
     "github"

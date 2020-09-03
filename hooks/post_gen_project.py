@@ -9,6 +9,7 @@ import requests
 
 LICENCE = "{{ cookiecutter.license }}"
 IS_PROPRIETARY = LICENCE == "Proprietary"
+IS_COVERAGE_ENABLED = "{{ cookiecutter.coverage }}" == "yes"
 
 MIN_PYTHON_VERSION = "{{ cookiecutter.minimum_python_version }}"
 NAMESPACE = "{{ cookiecutter.namespace }}"
@@ -105,7 +106,8 @@ def generate_gitignore():
             except requests.exceptions.HTTPError:
                 pass
         gitignore.write("## source: custom ignores")
-        gitignore.write(".coverage")
+        if IS_COVERAGE_ENABLED:
+            gitignore.write(".coverage")
         gitignore.write("")
 
 
@@ -150,8 +152,11 @@ def add_dependencies():
     else:
         run(f"{add_command} -D pre-commit")
 
-    run(f"{add_command} -D tox pytest pytest-cov")
-    run(f"{add_command} -D coverage -E toml")
+    run(f"{add_command} -D tox pytest")
+
+    if IS_COVERAGE_ENABLED:
+        run(f"{add_command} pytest-cov")
+        run(f"{add_command} -D coverage -E toml")
 
 
 def main():

@@ -37,15 +37,15 @@ legacy_tox_ini = """
 [tox]
 minversion = 3.13.0
 isolated_build = True
-envlist = clean,py
+envlist = py
 
 [testenv]
 whitelist_externals = poetry
 setenv =
-    COVERAGE_FILE=.coverage/data.{envname}
+    {%- if cookiecutter.coverage == 'yes' %}COVERAGE_FILE=.coverage/data.{envname}{% endif %}
 commands =
     poetry install --no-root
-    pytest --cov --cov-report=term {posargs}
+    pytest {%- if cookiecutter.coverage == 'yes' %}--cov --cov-report=term{% endif %} {posargs}
 
 [testenv:lint]
 skip_install = True
@@ -53,7 +53,7 @@ deps =
     pre-commit
 commands =
     pre-commit run --all-files {posargs}
-
+{% if cookiecutter.coverage == 'yes' %}
 [testenv:report]
 skip_install = true
 deps =
@@ -72,8 +72,9 @@ deps =
 setenv =
     COVERAGE_FILE=.coverage/data
 commands = coverage erase
+{% endif %}
 """
-
+{% if cookiecutter.coverage == 'yes' %}
 [tool.coverage.run]
 branch = true
 parallel = true
@@ -122,7 +123,7 @@ output = ".coverage/coverage.xml"
 
 [tool.coverage.json]
 output = ".coverage/coverage.json"
-
+{% endif %}
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
